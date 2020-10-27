@@ -49,5 +49,8 @@ par(mfrow = c(2,3))
 for (i in c(3:8))
   hist(normalisedData[,c(i)],breaks = 200, main = colnames(RawDataset)[i],xlab = "Normalised Annual Spending",ylab = "Number of Customers")
   
+    RawDataset <- within(RawDataset,FreshQunitile <- as.integer(cut(Fresh,quantile(Fresh,probs =
+                                                                                      0:5/5),include.lowest = TRUE)))
+  
 
 
