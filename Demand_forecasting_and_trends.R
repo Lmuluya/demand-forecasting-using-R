@@ -25,4 +25,29 @@
 
 # importing the dataset
 RawDataset <- read.csv("Wholesale customers data.csv")
+RawDataset
+
+# Data Exploration
+str(RawDataset)
+
+# Summary distribution of attributes
+summary(RawDataset)
+
+# Getting the spending distributions
+par(mfrow = c(2,3))
+for(i in c(3:8))
+  hist(RawDataset[,c(i)],breaks = 200, main = colnames(RawDataset)[i],xlab = "Annual Spendings",ylab = "Number of customers")
+
+# Normalisation of the dataset and discritisation 
+
+normalisedData <- cbind(RawDataset[,c(2,1)],scale(RawDataset[,c(3:8)]))
+str(normalisedData)
+summary(normalisedData)
+
+# Visualising the normalised dataset
+par(mfrow = c(2,3))
+for (i in c(3:8))
+  hist(normalisedData[,c(i)],breaks = 200, main = colnames(RawDataset)[i],xlab = "Normalised Annual Spending",ylab = "Number of Customers")
+  
+
 
