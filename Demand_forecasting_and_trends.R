@@ -25,7 +25,6 @@
 
 # importing the dataset
 RawDataset <- read.csv("Wholesale customers data.csv")
-RawDataset
 
 # Data Exploration
 str(RawDataset)
@@ -51,6 +50,17 @@ for (i in c(3:8))
   
     RawDataset <- within(RawDataset,FreshQunitile <- as.integer(cut(Fresh,quantile(Fresh,probs =
                                                                                       0:5/5),include.lowest = TRUE)))
-  
-
-
+    RawDataset <- within(RawDataset,MilkQunitile <- as.integer(cut(Milk,quantile(Milk,probs = 0:5/5),include.lowest = TRUE)))
+    
+    RawDataset <- within(RawDataset,GroceryQunitile <- as.integer(cut(Grocery,quantile(Grocery,probs = 0:5/5),include.lowest = TRUE)))
+    
+    RawDataset <- within(RawDataset,FrozenQunitile <- as.integer(cut(Frozen,quantile(Frozen,probs = 0:5/5),include.lowest = TRUE)))
+    
+    RawDataset <- within(RawDataset,Detergents_PaperQunitile <- as.integer(cut(Detergents_Paper,quantile(Detergents_Paper,probs = 0:5/5),include.lowest = TRUE)))
+    
+    RawDataset <- within(RawDataset,DelicassenQunitile <- as.integer(cut(Delicassen,quantile(Delicassen,probs = 0:5/5),include.lowest = TRUE)))
+    
+    ## Plotting a histogram 
+    par(mfrow = c(2,3))
+    for(i in c(9:14))
+      hist(RawDataset[,c(i)],breaks = 20,main = colnames(RawDataset)[i],xlab = "Discritised Annual Spendings Rank",ylab = "Number of customers")
